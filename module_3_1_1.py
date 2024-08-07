@@ -1,52 +1,35 @@
 calls = 0
 
-
 def count_calls():
     global calls
     calls += 1
-
+    return calls
 
 
 def string_info(string_):
-
     count_calls()
     tuple_ = (len(string_), string_.upper(), string_.lower())
-    print(tuple_)
+    return tuple_
 
 
 def is_contains(string_, list_to_search):
-
     count_calls()
+    list_to_search_lower = []
 
     string_1 = string_.lower()
-    if string_1 in list_to_search:
-        print('True')
-    else:
-        print('False')
+    for i in range(len(list_to_search)):
+        list_to_search_i = list_to_search[i]
+        list_to_search_lower.append(list_to_search_i.lower())
 
-list_to_search = ['if', 'else', 'while', 'global', 'true']
-i = 0
-while i < 5:
-    print("Введите любой оператор из Python")
-    print('или ПРОБЕЛ >> ENTER для завершения программы: ')
-    string_ = str(input())
-
-    if string_ == ' ':
-        break
-
-    elif string_ == '':
-        print('Внимательно следуйте подсказкам!')
-        print('************************************')
-        print()
-        i += 1
+    if string_1 in list_to_search_lower:
+        return True
 
     else:
-        string_info(string_)
-        is_contains(string_, list_to_search)
-        print('Количество вызовов функций: ', calls)
-        print('************************************')
-        print()
-        i += 1
+        return False
 
-print('THE END!')
-print('Try again')
+
+print(string_info('Capybara'))
+print(string_info('Armageddon'))
+print(is_contains('Urban', ['ban', 'BaNaN', 'urBAN']))  # Urban ~ urBAN
+print(is_contains('cycle', ['recycling', 'cyclic']))  # No matches
+print(calls)
